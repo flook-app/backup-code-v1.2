@@ -1,0 +1,26 @@
+services:
+  flook-v1-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9701:9701"
+    volumes:
+      - /storage0/srv/docker/flook-v1-2:/app
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_USER=u1652679_identpix_admin
+      - DATABASE_PASSWORD=p++ubr,+LAXq
+      - DATABASE_HOST=kevinchr.com
+      - DATABASE_NAME=u1652679_identpix_db
+    container_name: flook-v1-2
+    restart: always
+    networks:
+      link0:
+        ipv4_address: 10.9.0.1
+        aliases:
+          - flook-v1-2 
+
+networks:
+  link0:
+    external: true
