@@ -10,3 +10,4 @@ tensorflow-cpu
 tensorflow-intel
 terminado
 tf_keras
+deepface
