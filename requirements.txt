@@ -6,7 +6,7 @@ gdown
 mysql-connector-python
 tensorboard
 tensorboard-data-server
-tensorflow
+tensorflow-cpu
 tensorflow-intel
 terminado
 tf_keras
