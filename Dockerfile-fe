@@ -1,26 +1,48 @@
 # Use Node.js image
-FROM node:18-alpine
+#FROM node:18-alpine
 
 # Set working directory
-WORKDIR /app
+#WORKDIR /app
 
 # Copy dependencies files
-COPY package.json package-lock.json ./
+#COPY package.json package-lock.json ./
 
 # Install dependencies
-RUN npm install
+#RUN npm install
 
 # Copy the rest of the project
-COPY . .
+#COPY . .
 
 # Include environment file
-COPY .env .env
+#COPY .env .env
 
 # Run the build process
 # RUN npm run build
 
 # Expose the port your app runs on
-EXPOSE 9702
+#EXPOSE 9702
 
 # Start the app
-CMD ["npm", "run", "preview"]
+#CMD ["npm", "run", "preview"]
+
+
+
+
+
+
+
+# Build the application
+FROM node:18-alpine as build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Use a lightweight web server to serve the built files
+FROM node:18-alpine
+WORKDIR /app
+RUN npm install -g serve
+COPY --from=build /app/dist ./dist
+EXPOSE 9702
+CMD ["serve", "-s", "dist", "-l", "9702"]
