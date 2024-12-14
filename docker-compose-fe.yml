@@ -1,0 +1,21 @@
+services:
+  flook-fe-v1:
+    build:
+      context: .
+      dockerfile: Dockerfile-fe
+    ports:
+      - "9702:9702" # Map port 3000 to access the app locally
+    volumes:
+      - /storage0/srv/docker/flook-fe-v1:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+    container_name: flook-fe-v1
+    restart: always
+    networks:
+      link0:
+        ipv4_address: 10.9.0.2
+
+networks:
+  link0:
+    external: true
