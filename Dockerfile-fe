@@ -17,7 +17,7 @@ COPY . .
 COPY .env .env
 
 # Run the build process
-RUN npm run build
+# RUN npm run build
 
 # Expose the port your app runs on
 EXPOSE 9702
