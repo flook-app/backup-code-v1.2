@@ -1,19 +1,22 @@
-# Use the official Node.js image as a base
+# Use Node.js image
 FROM node:18-alpine
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy dependencies files
 COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application
+# Copy the rest of the project
 COPY . .
 
-# Build the frontend
+# Include environment file
+COPY .env .env
+
+# Run the build process
 RUN npm run build
 
 # Expose the port your app runs on
